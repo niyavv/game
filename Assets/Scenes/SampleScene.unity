@@ -670,7 +670,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 0
 --- !u!114 &408739614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,15 +680,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 408739608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8daccb8cfcd54748bd4f3eb9a0f555af, type: 3}
+  m_Script: {fileID: 11500000, guid: b7c9d6fd0e1092645bb6a2ce29148e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideDelay: 5
-  _hideDuration: 0.75
-  _showDuration: 1.75
-  _hideEase: 1
-  _hidePosition: {fileID: 276481149}
-  _showPosition: {fileID: 1649047371}
+  rb2D: {fileID: 408739613}
+  speed: 3
 --- !u!1 &442980910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1079,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1107,7 +1103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 3.65, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1704,6 +1700,7 @@ GameObject:
   - component: {fileID: 1116101105}
   - component: {fileID: 1116101106}
   - component: {fileID: 1116101107}
+  - component: {fileID: 1116101108}
   m_Layer: 0
   m_Name: PinkGuy
   m_TagString: MainCamera
@@ -1831,12 +1828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c9d6fd0e1092645bb6a2ce29148e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
-  velocity: 7
   rb2D: {fileID: 1116101099}
-  managerGame: {fileID: 398243860}
   speed: 3
-  time: 0
 --- !u!114 &1116101105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,6 +1884,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2064646, y: 0.23005666}
   m_EdgeRadius: 0
+--- !u!114 &1116101108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116101098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fb5b85104b49169814267039387ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 1116101099}
+  velocity: 7
 --- !u!1 &1135966616
 GameObject:
   m_ObjectHideFlags: 0

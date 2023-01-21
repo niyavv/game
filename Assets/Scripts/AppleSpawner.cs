@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class AppleSpawner : MonoBehaviour
 {
-    public Move MoveScript;
-    public GameObject Apple;
-    public float height;
-    public float time;
-    private void Start(){
-
-    StartCoroutine(SpawnObject(time));//time süresinde bir rutinde obje spawn et
-
-    }
-
-    public IEnumerator SpawnObject(float time){
-
-    while (!MoveScript.isDead)//eðer karakter ölü deðilse
-    {
-        var instantiatedObject = Instantiate (Apple , new Vector3 (1 , Random.Range(-height , height), 0), Quaternion.identity);//hangi nesne, hangi aralýkta, ne kadar
-        
-        instantiatedObject.name = "Apple";//adý apple olacak objeler
-
-        yield return new WaitForSeconds(time);//yeni obje için time kadar bekle
-         
-    }
-    }
+    // public Move MoveScript;
+    // public GameObject Apple;
+    // public float height;
+    // public float time;
+    // private void Start(){
+    //
+    // StartCoroutine(SpawnObject(time));//time sï¿½resinde bir rutinde obje spawn et
+    //
+    // }
+    //
+    // public IEnumerator SpawnObject(float time){
+    //
+    // while (!MoveScript.isDead)//eï¿½er karakter ï¿½lï¿½ deï¿½ilse
+    // {
+    //     var instantiatedObject = Instantiate (Apple , new Vector3 (1 , Random.Range(-height , height), 0), Quaternion.identity);//hangi nesne, hangi aralï¿½kta, ne kadar
+    //     
+    //     instantiatedObject.name = "Apple";//adï¿½ apple olacak objeler
+    //
+    //     yield return new WaitForSeconds(time);//yeni obje iï¿½in time kadar bekle
+    //      
+    // }
+    // }
 }
