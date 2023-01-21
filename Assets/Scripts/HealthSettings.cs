@@ -7,6 +7,7 @@ namespace ScriptableObjects
     public class HealthSettings : ScriptableObject
     {
         public int HealthCount;
+        public float TemporaryInvincibilityDuration;
         public bool IsInvincible;
         public HealthUIView HealthUIViewPrefab;
     }

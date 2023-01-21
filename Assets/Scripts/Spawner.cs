@@ -6,20 +6,20 @@ public class Spawner : MonoBehaviour
 {
     public Move MoveScript;
     public GameObject SpikeHead;
-    public float height;
+    public Vector2 height;
     public float time;
 
     public void Start(){
 
-    StartCoroutine(SpawnObject(time));//time süresinde bir rutinde obje spawn et
+    StartCoroutine(SpawnObject(time));//time sï¿½resinde bir rutinde obje spawn et
 
     }
 
     public IEnumerator SpawnObject(float time){
 
-    while (!MoveScript.isDead)//eðer karakter ölü deðilse
+    while (!MoveScript.isDead)//eï¿½er karakter ï¿½lï¿½ deï¿½ilse
     {
-        Instantiate (SpikeHead , new Vector3 (1 , Random.Range(-height , height), 0), Quaternion.identity);//bu aralýkta spike head objesi
+        Instantiate (SpikeHead , new Vector3 (1 , Random.Range(height.x , height.y), 0), Quaternion.identity);//bu aralï¿½kta spike head objesi
 
         yield return new WaitForSeconds(time);
 

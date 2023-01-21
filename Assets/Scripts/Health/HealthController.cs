@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -6,23 +7,33 @@ namespace DefaultNamespace.Health
 {
     public class HealthController : MonoBehaviour
     {
+        [SerializeField] private BoxCollider2D _boxCollider;
         [SerializeField] private HealthSettings _healthSettings;
         private int _currentHealthCount;
-
+        private bool _isInvincible;
         private void Awake()
         {
             _currentHealthCount = _healthSettings.HealthCount;
-            Events.PlayerReceivedDamageEvent+= OnPlayerReceivedDamage;
         }
 
-        private void OnDestroy()
-        {
-            Events.PlayerReceivedDamageEvent-= OnPlayerReceivedDamage;
-        }
 
-        private void OnPlayerReceivedDamage(DamageData obj)
+        private void OnTriggerEnter2D(Collider2D collision)//i�inden ge�mesi gerek
         {
-            GetDamage(obj.DamageAmount);
+            if(collision.gameObject.name == "Apple")//e�er apple objesinin i�inden ge�erse
+            {
+                //managerGame.UpdateScore();//fonksiyonu �al��t�r
+            }
+            if(collision.gameObject.name == "Banana")//e�er banana objesinin i�inden ge�erse
+            {
+            
+            }
+            if(collision.gameObject.CompareTag("DeathArea") && !_isInvincible)//e�er deatharea ile �arp���rsa 
+            {
+                // isDead = true;//�l� olsun
+                // Time.timeScale = 0;//zaman� durdur
+                GetDamage(1);
+                Destroy(collision.gameObject);
+            }
         }
 
         private void GetDamage(int damage)
@@ -38,6 +49,26 @@ namespace DefaultNamespace.Health
             {
                 Debug.Log("Dead");
             }
+            else
+            {
+                ActivateTemporaryInvincibility();
+            }
+        }
+
+        private void ActivateTemporaryInvincibility()
+        {
+            _isInvincible = true;
+            Events.InvincibilityStateChangedEvent?.Invoke(new InvincibilityStateData(true,
+                _healthSettings.TemporaryInvincibilityDuration));
+            StartCoroutine(DisableInvincibility());
+        }
+
+        private IEnumerator DisableInvincibility()
+        {
+            yield return new WaitForSeconds(_healthSettings.TemporaryInvincibilityDuration);
+            Events.InvincibilityStateChangedEvent?.Invoke(new InvincibilityStateData(false,
+                _healthSettings.TemporaryInvincibilityDuration));
+            _isInvincible = false;
         }
     }
 }

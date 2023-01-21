@@ -8,6 +8,7 @@ namespace DefaultNamespace
         // public static Action
         public static Action<HealthData> HealthCountChangedEvent;
         public static Action<DamageData> PlayerReceivedDamageEvent;
+        public static Action<InvincibilityStateData> InvincibilityStateChangedEvent;
     }
 
     public struct HealthData
@@ -29,6 +30,17 @@ namespace DefaultNamespace
         {
             DamageAmount = 1;
             this.Damager = damager;
+        }
+    }
+    public struct InvincibilityStateData
+    {
+        public bool IsEnabled;
+        public float Duration;
+
+        public InvincibilityStateData(bool isEnabled, float duration)
+        {
+            IsEnabled = isEnabled;
+            Duration = duration;
         }
     }
 }

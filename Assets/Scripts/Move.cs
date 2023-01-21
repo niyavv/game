@@ -29,28 +29,12 @@ public class Move : MonoBehaviour
         rb2D.velocity = new Vector2(speed*horizontal,rb2D.velocity.y);
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)//i�inden ge�mesi gerek
-    {
-        if(collision.gameObject.name == "Apple")//e�er apple objesinin i�inden ge�erse
-        {
-            managerGame.UpdateScore();//fonksiyonu �al��t�r
-        }
-        if(collision.gameObject.name == "Banana")//e�er banana objesinin i�inden ge�erse
-        {
-            
-        }
-    }
+
     private void OnCollisionEnter2D(Collision2D collision)//�arp��mas� yeterli
     {
         if (collision.gameObject.TryGetComponent(out IJumpable jumpable))
         {
             isJumping = false;
-        }
-        if(collision.gameObject.CompareTag("DeathArea"))//e�er deatharea ile �arp���rsa 
-        {
-            // isDead = true;//�l� olsun
-            // Time.timeScale = 0;//zaman� durdur
-            Events.PlayerReceivedDamageEvent(new DamageData(collision.gameObject));
         }
     }
     

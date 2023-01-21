@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7514a52ac5b14ef4b09f395528421018, type: 3}
   m_Name: HealthSettings
   m_EditorClassIdentifier: 
-  HealthCount: 3
+  HealthCount: 5
+  TemporaryInvincibilityDuration: 2
   IsInvincible: 0
   HealthUIViewPrefab: {fileID: 1953464945940852372, guid: d4144604ab8666e4c807a7f5b41acc76, type: 3}
