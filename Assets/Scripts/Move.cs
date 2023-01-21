@@ -21,8 +21,8 @@ public class Move : MonoBehaviour
             isJumping = true;
         }
 
-        float horizontal = Input.GetAxis("Horizontal");
-        HorizantalMove(horizontal);
+        // float horizontal = Input.GetAxis("Horizontal");
+        HorizantalMove(1);
     }
     private void HorizantalMove(float horizontal){
 
