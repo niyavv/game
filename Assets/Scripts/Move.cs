@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class Move : MonoBehaviour
@@ -10,39 +11,45 @@ public class Move : MonoBehaviour
     public GameManager managerGame;
     public float speed; 
     public float time;
+
+    private bool isJumping = false;
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))//týklamayý al
-            {
-                rb2D.velocity = Vector2.up * velocity;//vektör 2 yönünde yukarý doðru zýplat
-            }
+        if (Input.GetMouseButtonDown(0) && !isJumping) //tï¿½klamayï¿½ al
+        {
+            rb2D.velocity = Vector2.up * velocity; //vektï¿½r 2 yï¿½nï¿½nde yukarï¿½ doï¿½ru zï¿½plat
+            isJumping = true;
+        }
 
-            float horizontal = Input.GetAxis("Horizontal");
-            HorizantalMove(horizontal);
-
+        float horizontal = Input.GetAxis("Horizontal");
+        HorizantalMove(horizontal);
     }
     private void HorizantalMove(float horizontal){
 
         rb2D.velocity = new Vector2(speed*horizontal,rb2D.velocity.y);
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)//içinden geçmesi gerek
+    private void OnTriggerEnter2D(Collider2D collision)//iï¿½inden geï¿½mesi gerek
     {
-        if(collision.gameObject.name == "Apple")//eðer apple objesinin içinden geçerse
+        if(collision.gameObject.name == "Apple")//eï¿½er apple objesinin iï¿½inden geï¿½erse
         {
-            managerGame.UpdateScore();//fonksiyonu çalýþtýr
+            managerGame.UpdateScore();//fonksiyonu ï¿½alï¿½ï¿½tï¿½r
         }
-        if(collision.gameObject.name == "Banana")//eðer banana objesinin içinden geçerse
+        if(collision.gameObject.name == "Banana")//eï¿½er banana objesinin iï¿½inden geï¿½erse
         {
             
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)//çarpýþmasý yeterli
+    private void OnCollisionEnter2D(Collision2D collision)//ï¿½arpï¿½ï¿½masï¿½ yeterli
     {
-        if(collision.gameObject.tag == "DeathArea")//eðer deatharea ile çarpýþýrsa 
+        if (collision.gameObject.TryGetComponent(out IJumpable jumpable))
         {
-            isDead = true;//ölü olsun
-            Time.timeScale = 0;//zamaný durdur
+            isJumping = false;
+        }
+        if(collision.gameObject.CompareTag("DeathArea"))//eï¿½er deatharea ile ï¿½arpï¿½ï¿½ï¿½rsa 
+        {
+            isDead = true;//ï¿½lï¿½ olsun
+            Time.timeScale = 0;//zamanï¿½ durdur
         }
     }
     
