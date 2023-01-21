@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 408739613}
   - component: {fileID: 408739612}
   - component: {fileID: 408739614}
+  - component: {fileID: 408739615}
   m_Layer: 0
   m_Name: MaskGuy
   m_TagString: Untagged
@@ -617,7 +618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408739608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -685,6 +686,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 408739613}
   speed: 3
+--- !u!114 &408739615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408739608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daccb8cfcd54748bd4f3eb9a0f555af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hideDistance: 4
+  _trackingDistance: 2
+  _slowdownMultiplier: 0.5
+  _speedUpMultiplier: 2
+  _trackingWaitTime: 5
+  _move: {fileID: 408739614}
+  _trackingTarget: {fileID: 1116101103}
 --- !u!1 &442980910
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +841,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeHead (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7309701579236501872, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
 --- !u!4 &457989329 stripped
 Transform:
@@ -1018,7 +1039,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4729144659767817802, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
 --- !u!4 &469730158 stripped
 Transform:
@@ -1079,7 +1101,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1103,7 +1125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6, y: 3.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1390,7 +1412,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeHead (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7309701579236501872, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
 --- !u!4 &830225254 stripped
 Transform:
@@ -2071,7 +2094,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4729144659767817802, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
 --- !u!4 &1242902215 stripped
 Transform:
@@ -2235,7 +2259,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4729144659767817802, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
 --- !u!4 &1320712483 stripped
 Transform:
@@ -2336,7 +2361,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeHead (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7309701579236501872, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
 --- !u!4 &1444049983 stripped
 Transform:
@@ -2803,7 +2829,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeHead (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7309701579236501872, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
 --- !u!4 &1728445557 stripped
 Transform:
@@ -2865,7 +2892,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4729144659767817802, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 855e2f84f3e572941988bc40d206085c, type: 3}
 --- !u!4 &1901946275 stripped
 Transform:
@@ -2935,7 +2963,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeHead (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7309701579236501872, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a33275d2d68eeba4389730640596f8ec, type: 3}
 --- !u!4 &1946819313 stripped
 Transform:

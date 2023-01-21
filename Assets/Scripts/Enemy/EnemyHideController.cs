@@ -8,16 +8,16 @@ namespace Enemy
 {
     public class EnemyHideController : MonoBehaviour
     {
-        [SerializeField] private float _hideDelay;
-        [SerializeField] private float _hideDuration;
-        [SerializeField] private float _showDuration;
-        [SerializeField] private Ease _hideEase;
-        [SerializeField] private Transform _hidePosition;
-        [SerializeField] private Transform _showPosition;
+        [SerializeField] private float _hideDistance;
+        [SerializeField] private float _trackingDistance;
+        [SerializeField] private float _slowdownMultiplier;
+        [SerializeField] private float _speedUpMultiplier;
+        [SerializeField] private float _trackingWaitTime;
+        [SerializeField] private Move _move;
+        [SerializeField] private Transform _trackingTarget;
 
-        private Tween _showHideTween;
-        private IEnumerator _hideWaitCoroutine;
-        private bool _isVisible = true;
+        private IEnumerator _slowDownCoroutine;
+        private TrackingState _trackingState;
         private void Awake()
         {
             Events.HealthCountChangedEvent += OnPlayerReceivedDamage;
@@ -26,37 +26,48 @@ namespace Enemy
         private void OnDestroy()
         {
             Events.HealthCountChangedEvent -= OnPlayerReceivedDamage;
-            
         }
-        private void OnPlayerReceivedDamage(HealthData obj)
+
+        private void Update()
         {
-            if (!_isVisible)
+            var posWithoutY = new Vector2(transform.position.x, 0);
+            var targetPosWithoutY = new Vector2(_trackingTarget.position.x, 0);
+            var distance = Vector2.Distance(posWithoutY, targetPosWithoutY);
+            if (_trackingState == TrackingState.Tracking)
             {
-                Show();
-                StartCoroutine(LateDo(Hide, _showDuration));
+                _move.SetSpeedMultiplier(distance > _trackingDistance ? _speedUpMultiplier : 1);
+            }
+            else if (_trackingState == TrackingState.Hidden)
+            {
+                _move.SetSpeedMultiplier(distance < _hideDistance ? _slowdownMultiplier : 1);
             }
         }
 
-        private void Start()
+        private void OnPlayerReceivedDamage(HealthData obj)
         {
-            StartCoroutine(LateDo(Hide, _hideDelay));
+            if (_slowDownCoroutine != null)
+            {
+                StopCoroutine(_slowDownCoroutine);
+            }
+            _slowDownCoroutine = StopTracking();
+            StartCoroutine(_slowDownCoroutine);
+
+            _trackingState = TrackingState.Tracking;
         }
 
-        private IEnumerator LateDo(Action action, float hideDelay)
+        private IEnumerator StopTracking()
         {
-            yield return new WaitForSeconds(hideDelay);
-            action?.Invoke();
+            yield return new WaitForSeconds(_trackingWaitTime);
+            _trackingState = TrackingState.Hidden;
+
         }
 
-        public void Hide()
+        public enum TrackingState
         {
-            transform.DOMoveX(_hidePosition.position.x, _hideDuration).SetEase(_hideEase).OnComplete(() => _isVisible = false);
+            Unknown,
+            Tracking,
+            Hidden
         }
-
-        public void Show()
-        {
-            _isVisible = true;
-            transform.DOMoveX(_showPosition.position.x, _hideDuration).SetEase(_hideEase);
-        }
+        
     }
 }
