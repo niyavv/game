@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7514a52ac5b14ef4b09f395528421018, type: 3}
+  m_Name: HealthSettings
+  m_EditorClassIdentifier: 
+  HealthCount: 3
+  IsInvincible: 0
+  HealthUIViewPrefab: {fileID: 1953464945940852372, guid: d4144604ab8666e4c807a7f5b41acc76, type: 3}

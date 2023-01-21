@@ -48,8 +48,9 @@ public class Move : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("DeathArea"))//e�er deatharea ile �arp���rsa 
         {
-            isDead = true;//�l� olsun
-            Time.timeScale = 0;//zaman� durdur
+            // isDead = true;//�l� olsun
+            // Time.timeScale = 0;//zaman� durdur
+            Events.PlayerReceivedDamageEvent(new DamageData(collision.gameObject));
         }
     }
     
