@@ -7,8 +7,9 @@ namespace DefaultNamespace
     {
         // public static Action
         public static Action<HealthData> HealthCountChangedEvent;
-        public static Action<DamageData> PlayerReceivedDamageEvent;
         public static Action<InvincibilityStateData> InvincibilityStateChangedEvent;
+        public static Action<BoosterData> BoosterReceivedEvent;
+        public static Action<ScoreData> ScoreIncreasedEvent;
     }
 
     public struct HealthData
@@ -20,18 +21,7 @@ namespace DefaultNamespace
             CurrentHealth = currentHealth;
         }
     }
-
-    public struct DamageData
-    {
-        public GameObject Damager;
-        public int DamageAmount;
-
-        public DamageData(GameObject damager)
-        {
-            DamageAmount = 1;
-            this.Damager = damager;
-        }
-    }
+    
     public struct InvincibilityStateData
     {
         public bool IsEnabled;
@@ -41,6 +31,33 @@ namespace DefaultNamespace
         {
             IsEnabled = isEnabled;
             Duration = duration;
+        }
+    }
+
+    public struct BoosterData
+    {
+        public BoosterType BoosterType;
+        public float Duration;
+        public BoosterData(BoosterType boosterType, float duration)
+        {
+            BoosterType = boosterType;
+            Duration = duration;
+        }
+    }
+
+    public enum BoosterType
+    {
+        Unknown,
+        DoubleJump
+    }
+
+    public struct ScoreData
+    {
+        public int scoreToAdd;
+
+        public ScoreData(int scoreToAdd)
+        {
+            this.scoreToAdd = scoreToAdd;
         }
     }
 }

@@ -19,18 +19,8 @@ namespace DefaultNamespace.Health
 
         private void OnTriggerEnter2D(Collider2D collision)//i�inden ge�mesi gerek
         {
-            if(collision.gameObject.name == "Apple")//e�er apple objesinin i�inden ge�erse
+            if(collision.gameObject.CompareTag("DeathArea") && !_isInvincible)
             {
-                //managerGame.UpdateScore();//fonksiyonu �al��t�r
-            }
-            if(collision.gameObject.name == "Banana")//e�er banana objesinin i�inden ge�erse
-            {
-            
-            }
-            if(collision.gameObject.CompareTag("DeathArea") && !_isInvincible)//e�er deatharea ile �arp���rsa 
-            {
-                // isDead = true;//�l� olsun
-                // Time.timeScale = 0;//zaman� durdur
                 GetDamage(1);
                 Destroy(collision.gameObject);
             }

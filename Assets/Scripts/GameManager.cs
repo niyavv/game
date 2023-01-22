@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using DefaultNamespace;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,15 +12,30 @@ public class GameManager : MonoBehaviour
    
     public TMP_Text ScoreText;
 
+    private void Awake()
+    {
+        Events.ScoreIncreasedEvent += OnScoreIncreased;
+    }
+
+    private void OnDestroy()
+    {
+        Events.ScoreIncreasedEvent -= OnScoreIncreased;
+    }
+
+    private void OnScoreIncreased(ScoreData obj)
+    {
+        UpdateScore(obj.scoreToAdd);
+    }
+
     private void Start()
     {
-        score = 0;//score deðeri 0 olsun 
+        score = 0;//score deï¿½eri 0 olsun 
         ScoreText.text = score.ToString();
     }
 
-    public void UpdateScore()//updatescore fonksiyonu
+    private void UpdateScore(int amount)//updatescore fonksiyonu
     {
-        score++;//score'u bir arttýr
-        ScoreText.text = score.ToString();//int tanýmlanan score u string ifadeye dönüþtür
+        score+= amount;//score'u bir arttï¿½r
+        ScoreText.text = score.ToString();//int tanï¿½mlanan score u string ifadeye dï¿½nï¿½ï¿½tï¿½r
     }
 }
