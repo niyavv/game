@@ -23,6 +23,11 @@ namespace Enemy
             Events.HealthCountChangedEvent += OnPlayerReceivedDamage;
         }
 
+        private void Start()
+        {
+            StartTracking();
+        }
+
         private void OnDestroy()
         {
             Events.HealthCountChangedEvent -= OnPlayerReceivedDamage;
@@ -45,19 +50,25 @@ namespace Enemy
 
         private void OnPlayerReceivedDamage(HealthData obj)
         {
+            StartTracking(_trackingWaitTime);
+        }
+
+        private void StartTracking(float seconds = 1)
+        {
             if (_slowDownCoroutine != null)
             {
                 StopCoroutine(_slowDownCoroutine);
             }
-            _slowDownCoroutine = StopTracking();
+
+            _slowDownCoroutine = StopTracking(seconds);
             StartCoroutine(_slowDownCoroutine);
 
             _trackingState = TrackingState.Tracking;
         }
 
-        private IEnumerator StopTracking()
+        private IEnumerator StopTracking(float seconds = 1)
         {
-            yield return new WaitForSeconds(_trackingWaitTime);
+            yield return new WaitForSeconds(seconds);
             _trackingState = TrackingState.Hidden;
 
         }
